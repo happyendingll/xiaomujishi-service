@@ -5,6 +5,8 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const session = require('koa-generic-session')
+const cors = require('koa-cors')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -24,6 +26,23 @@ app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
 
+//设置cors跨域请求
+app.use(cors({
+  origin:'http://localhost:8080',//前端origin
+  credentials:true//允许跨域带cookie
+}))
+
+//设置秘钥
+app.keys=['solomonKey']
+
+//设置session
+app.use(session({
+  cookie:{//设置cookie
+    path:'/',
+    httpOnly:true,
+    maxAge:24*60*60*1000
+  }
+}))
 // logger
 app.use(async (ctx, next) => {
   const start = new Date()
