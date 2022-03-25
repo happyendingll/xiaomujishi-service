@@ -1,0 +1,91 @@
+# 数据模型设计
+
+## 用户
+```js
+{
+    _id:'xxx',
+    username:'13023802363',
+    password:'abc'
+}
+```
+## 地址
+```js
+{
+    _id:'xxx',
+    username:'13023802363',//跟用户对应关系
+    city:'厦门',
+    community:'xx小区',
+    houseNumber:'20栋',
+    receiver:'solomon',
+    phone:'13600324980'
+}
+```
+## 商店
+```js
+{
+    _id:'xxx',
+    shopName:'沃尔玛',
+    imgUrl:'../public/images/shop/wmt.jpeg',
+    monthlySale:'1000',
+    sendOff:'50',
+    baseShippingCosts:'6',
+    slogan:'满100减10优惠券随心用'
+}
+```
+## 商品
+```js
+{
+        _id:'xxx',
+        shopId:'xxxxx',
+        name:'葡萄',
+        imgUrl:'../public/images/product/grape.jpg',
+        monthlySale:'10',
+        price:'50',
+        originalPrice:'33',
+        tags:['all','secKill','freshFruit']
+}
+```
+## 订单
+```js
+{
+    username:'xxx',
+    shopId:'xxx',
+    shopName:'沃尔玛',
+    isCanceled:false,//是否支付
+    //地址信息
+    address:{
+        username:'13023802363',//跟用户对应关系
+        city:'厦门',
+        community:'xx小区',
+        houseNumber:'20栋',
+        receiver:'solomon',
+        phone:'13600324980'
+    }
+    //商品信息
+    products:[
+        {
+            product:{
+                shopId:'xxxxx',
+                name:'葡萄',
+                imgUrl:'../public/images/product/grape.jpg',
+                monthlySale:'10',
+                price:'50',
+                originalPrice:'33',
+                tags:['all','secKill','freshFruit']
+            },
+            num:'3',
+        },
+        {
+            product:{
+                shopId:'xxxxx',
+                name:'葡萄',
+                imgUrl:'../public/images/product/grape.jpg',
+                monthlySale:'10',
+                price:'50',
+                originalPrice:'33',
+                tags:['all','secKill','freshFruit']
+            },
+            num:'5',
+        }]
+}
+```
