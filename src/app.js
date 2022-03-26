@@ -12,6 +12,7 @@ const index = require("./routes/index");
 const users = require("./routes/users");
 const addressRouter = require("./routes/addressRouter");
 const shopRouter = require("./routes/shopRouter");
+const orderRouter = require("./routes/orderRouter");
 
 // error handler
 onerror(app);
@@ -67,6 +68,7 @@ app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(addressRouter.routes(), addressRouter.allowedMethods());
 app.use(shopRouter.routes(), shopRouter.allowedMethods());
+app.use(orderRouter.routes(), orderRouter.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {
