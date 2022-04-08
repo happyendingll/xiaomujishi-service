@@ -364,7 +364,8 @@
 ```js
 {
     errno:0,
-    data:{
+    data:
+    {
         _id:'1213',
         shopId:'656654',
         name:'葡萄',
@@ -427,3 +428,62 @@
 ```
 
 ---
+## 查询订单列表
+
+### url
+
+`/api/order`
+
+### method
+
+`get`
+
+### loginCheck?
+
+`true`
+
+### request body
+
+无
+
+### response body
+
+```js
+{
+    errno:0,
+    data: {
+        username: '13023802363',
+        shopId: 'xxx',
+        shopName: 'xxx',
+        isCanceled: Boolean, //是否支付
+        //地址信息
+        address: {
+            username: '13023802363', //跟用户对应关系
+            city:'北京',
+            community:'yy小区',
+            houseNumber:'12栋',
+            receiver:'lucy',
+            phone:'13600324980'
+        },
+        //商品信息
+        products: [
+            {
+                product: {
+                    _id:'xxx',
+                    shopId:'656654',
+                    name:'葡萄',
+                    imgUrl:'../public/images/product/grape.jpg',
+                    monthlySale:'10',
+                    price:'50',
+                    originalPrice:'33',
+                    tags:['all','secKill','freshFruit']
+                },
+                num: Number,
+            },
+        ],
+    }
+    }
+    message:'errrno 不为0时的错误信息'
+}
+```
+

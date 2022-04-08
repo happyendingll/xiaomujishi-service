@@ -7,7 +7,7 @@ const { SuccessModel, ErrorModel } = require("../res-model/index");
 const loginCheck = require("../middleware/loginCheck");
 const { getAddress } = require("../controller/address");
 const { getProduct } = require("../controller/shop");
-const { createOrder } = require("../controller/order");
+const { createOrder,getOrderList } = require("../controller/order");
 
 router.prefix("/api/order");
 //创建订单
@@ -38,4 +38,16 @@ router.post("/", loginCheck, async (ctx, next) => {
     ctx.body = new ErrorModel(10005, `创建订单失败 - ${ex}`);
   }
 });
+//获取订单列表
+router.get("/", loginCheck, async (ctx, next) => {
+  try {
+    const username = ctx.session.userInfo.username;
+    const orderList = await getOrderList(username);
+    ctx.body = new SuccessModel(orderList);
+  } catch (ex) {
+    console.error(ex);
+    ctx.body = new ErrorModel(10006, `获取订单列表失败 - ${ex}`);
+  }
+});
+
 module.exports = router;
