@@ -45,4 +45,15 @@ const updateAddress = async (id, username, data) => {
   );
   return newAddress;
 };
-module.exports = { createAddress, getAddressList, getAddress, updateAddress };
+/**
+ * 查询默认收货地址
+ * @param {string} username 用户名
+ */
+const getDefaultAddress = async (username) => {
+  const defaultAddress = await Address.findOne({
+    username,
+    isDefault: true,
+  });
+  return defaultAddress;
+};
+module.exports = { createAddress, getAddressList, getAddress, updateAddress,getDefaultAddress};
