@@ -7,12 +7,14 @@ const bodyparser = require("koa-bodyparser");
 const logger = require("koa-logger");
 const session = require("koa-generic-session");
 const cors = require("koa-cors");
+const koaBody = require('./middleware/koa-body');
 
 const index = require("./routes/index");
 const users = require("./routes/users");
 const addressRouter = require("./routes/addressRouter");
 const shopRouter = require("./routes/shopRouter");
 const orderRouter = require("./routes/orderRouter");
+const fileRouter = require("./routes/fileRouter");
 
 // error handler
 onerror(app);
@@ -41,6 +43,8 @@ app.use(
         methods: ["GET","POST","PATCH","DELETE"]
     })
 );
+//设置文件请求
+app.use(koaBody);
 
 //设置秘钥
 app.keys = ["solomonKey"];
@@ -70,6 +74,7 @@ app.use(users.routes(), users.allowedMethods());
 app.use(addressRouter.routes(), addressRouter.allowedMethods());
 app.use(shopRouter.routes(), shopRouter.allowedMethods());
 app.use(orderRouter.routes(), orderRouter.allowedMethods());
+app.use(fileRouter.routes(), fileRouter.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {
