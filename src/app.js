@@ -36,7 +36,7 @@ app.use(
 //设置cors跨域请求
 app.use(
     cors({
-        origin: "http://localhost:8088", //前端origin
+        // origin: "http://localhost:8088", //前端origin
         credentials: true, //允许跨域带cookie
         methods: ["GET","POST","PATCH","DELETE"]
     })
